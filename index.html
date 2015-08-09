@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Campo minado</title>
+	<script src="square.js"></script>
+	<script src="grid.js"></script>
+	<script src="game.js"></script>
+	<style>
+		button{
+			width: 25px;
+			height: 25px;
+			border: 1px solid #000;
+		}
+
+	</style>
+</head>
+<body>
+
+</body>
+<script>
+	var corpo = document.getElementsByTagName('body')[0];
+	var square0 = new Square( {coordX:0,coordY:0}, false, 0 );
+	var square1 = new Square( {coordX:1,coordY:0}, true, 1 );
+	var square2 = new Square( {coordX:2,coordY:0}, false, 2 );
+	square0.neighbors.push(square1);
+	square0.neighbors.push(square2);
+	square1.neighbors.push(square0);
+	square1.neighbors.push(square2);
+	square2.neighbors.push(square0);
+	square2.neighbors.push(square1);
+	square0.setNumberOfBombsAround();
+	square1.setNumberOfBombsAround();
+	square2.setNumberOfBombsAround();
+	corpo.appendChild(square0.element);
+	corpo.appendChild(square1.element);
+	corpo.appendChild(square2.element);
+</script>
+</html>
